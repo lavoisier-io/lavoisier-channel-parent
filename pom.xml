@@ -29,9 +29,10 @@
 
     <properties>
         <lavoisier.version>${project.version}</lavoisier.version>
-        <felix.version>5.4.0</felix.version>
-        <osgi.version>1.4.0</osgi.version>
+        <osgi.version>5.0.0</osgi.version>
         <felix-bundle-plugin.version>3.0.1</felix-bundle-plugin.version>
+        <java.source.version>1.8</java.source.version>
+        <java.target.version>1.8</java.target.version>
     </properties>
 
     <dependencyManagement>
@@ -43,8 +44,14 @@
                 <scope>provided</scope>
             </dependency>
             <dependency>
-                <groupId>org.apache.felix</groupId>
+                <groupId>org.osgi</groupId>
                 <artifactId>org.osgi.compendium</artifactId>
+                <version>${osgi.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.osgi</groupId>
+                <artifactId>org.osgi.core</artifactId>
                 <version>${osgi.version}</version>
                 <scope>provided</scope>
             </dependency>
@@ -54,6 +61,15 @@
     <build>
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.5.1</version>
+                    <configuration>
+                        <source>${java.source.version}</source>
+                        <target>${java.target.version}</target>
+                    </configuration>
+                </plugin>
                 <plugin>
                     <groupId>org.apache.felix</groupId>
                     <artifactId>maven-bundle-plugin</artifactId>
